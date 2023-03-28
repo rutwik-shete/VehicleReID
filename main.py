@@ -42,7 +42,7 @@ def main():
     set_random_seed(args.seed)
     if not args.use_avai_gpus:
         os.environ["CUDA_VISIBLE_DEVICES"] = args.gpu_devices
-    use_gpu = torch.cuda.is_available()
+    use_gpu = torch.cuda.is_available() or torch.has_mps
     if args.use_cpu:
         use_gpu = False
     log_name = "log_test.txt" if args.evaluate else "log_train.txt"
@@ -72,7 +72,11 @@ def main():
     if args.load_weights and check_isfile(args.load_weights):
         load_pretrained_weights(model, args.load_weights)
 
-    model = nn.DataParallel(model).cuda() if use_gpu else model
+    if torch.has_mps:
+        model = nn.DataParallel(model).to("mps") if use_gpu else model
+    else:
+        model = nn.DataParallel(model).cuda() if use_gpu else model
+
 
     criterion_xent = CrossEntropyLoss(
         num_classes=dm.num_train_pids, use_gpu=use_gpu, label_smooth=args.label_smooth
@@ -183,7 +187,10 @@ def train(
         data_time.update(time.time() - end)
 
         if use_gpu:
-            imgs, pids = imgs.cuda(), pids.cuda()
+            if torch.has_mps:
+                imgs, pids = imgs.to("mps"), pids.to('mps')
+            else:
+                imgs, pids = imgs.cuda(), pids.cuda()
 
         outputs, features = model(imgs)
         if isinstance(outputs, (tuple, list)):
@@ -245,7 +252,10 @@ def test(
         qf, q_pids, q_camids = [], [], []
         for batch_idx, (imgs, pids, camids, _) in enumerate(queryloader):
             if use_gpu:
-                imgs = imgs.cuda()
+                if torch.has_mps:
+                    imgs = imgs.to("mps")
+                else:
+                    imgs = imgs.cuda()
 
             end = time.time()
             features = model(imgs)
@@ -267,7 +277,9 @@ def test(
 
         gf, g_pids, g_camids = [], [], []
         for batch_idx, (imgs, pids, camids, _) in enumerate(galleryloader):
-            if use_gpu:
+            if torch.has_mps:
+                imgs = imgs.to("mps")
+            else:
                 imgs = imgs.cuda()
 
             end = time.time()

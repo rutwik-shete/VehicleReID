@@ -37,7 +37,10 @@ class CrossEntropyLoss(nn.Module):
             1, targets.unsqueeze(1).data.cpu(), 1
         )
         if self.use_gpu:
-            targets = targets.cuda()
+            if torch.has_mps:
+                targets = targets.to('mps')
+            else :
+                targets = targets.cuda()
         targets = (1 - self.epsilon) * targets + self.epsilon / self.num_classes
         loss = (-targets * log_probs).mean(0).sum()
         return loss
