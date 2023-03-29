@@ -23,10 +23,11 @@
                 "--stepsize","20","40",
                 "--train-batch-size","64",
                 "--test-batch-size","100",
-                "--save-dir","logs/resnet50-veri",
+                "--save-dir","logs/trainingTest",
                 "--workers","8",
                 "--eval-freq","2",
-                "--start-eval","1"
+                "--start-eval","1",
+                "--resume","logs/trainingTest/model.pth.tar-2"
             ],
             "justMyCode": true,
             "env": {"name":"CLG_CV"}
