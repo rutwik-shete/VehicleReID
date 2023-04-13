@@ -10,6 +10,9 @@ import torch.nn as nn
 
 from .iotools import mkdir_if_missing
 
+from contextlib import suppress
+from pathlib import Path
+
 
 def save_checkpoint(state, save_dir, is_best=False, remove_module_from_keys=False):
     mkdir_if_missing(save_dir)
@@ -24,16 +27,24 @@ def save_checkpoint(state, save_dir, is_best=False, remove_module_from_keys=Fals
         state["state_dict"] = new_state_dict
     # save
     epoch = state["epoch"]
-    fpath = osp.join(save_dir, "model.pth.tar-" + str(epoch))
+    fpath = osp.join(save_dir, "model.pth.tar-" + "{:02d}".format(epoch),".ckpt")
     torch.save(state, fpath)
     print(f'Checkpoint saved to "{fpath}"')
     if is_best:
         shutil.copy(fpath, osp.join(osp.dirname(fpath), "best_model.pth.tar"))
 
+def get_latest_ckpt(path, reverse=False, suffix='.ckpt'):
+    """Load latest checkpoint from target directory. Return None if no checkpoints are found."""
+    path, file = Path(path), None
+    files = (f for f in sorted(path.iterdir(), reverse=not reverse) if f.suffix == suffix)
+    with suppress(StopIteration):
+        file = next(f for f in files)
+    return file
 
-def resume_from_checkpoint(ckpt_path, model, optimizer=None):
-    print(f'Loading checkpoint from "{ckpt_path}"')
-    ckpt = torch.load(ckpt_path)
+def resume_from_checkpoint(ckpt_dir, model, optimizer=None):
+    ckpt_file = get_latest_ckpt(ckpt_dir)
+    print(f'Loading checkpoint from "{ckpt_file}"')
+    ckpt = torch.load(ckpt_file)
     model.load_state_dict(ckpt["state_dict"])
     print("Loaded model weights")
     if optimizer is not None:

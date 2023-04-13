@@ -42,17 +42,18 @@ def main():
     set_random_seed(args.seed)
     if not args.use_avai_gpus:
         os.environ["CUDA_VISIBLE_DEVICES"] = args.gpu_devices
-    use_gpu = torch.cuda.is_available() or torch.has_mps
+    use_gpu = torch.cuda.is_available()
     if args.use_cpu:
         use_gpu = False
     log_name = "log_test.txt" if args.evaluate else "log_train.txt"
     sys.stdout = Logger(osp.join(args.save_dir, log_name))
     print(f"==========\nArgs:{args}\n==========")
-
+    print("Value Of GPU : ",use_gpu)
     if use_gpu:
         print(f"Currently using GPU {args.gpu_devices}")
         cudnn.benchmark = True
     else:
+        print("Using CPU , Suggest To Use GPU")
         warnings.warn("Currently using CPU, however, GPU is highly recommended")
 
     print("Initializing image data manager")
@@ -85,7 +86,7 @@ def main():
     optimizer = init_optimizer(model, **optimizer_kwargs(args))
     scheduler = init_lr_scheduler(optimizer, **lr_scheduler_kwargs(args))
 
-    if args.resume and check_isfile(args.resume):
+    if args.resume and osp.isdir(args.resume):
         args.start_epoch = resume_from_checkpoint(
             args.resume, model, optimizer=optimizer
         )
