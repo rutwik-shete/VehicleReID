@@ -27,7 +27,7 @@ def save_checkpoint(state, save_dir, is_best=False, remove_module_from_keys=Fals
         state["state_dict"] = new_state_dict
     # save
     epoch = state["epoch"]
-    fpath = osp.join(save_dir, "model.pth.tar-" + "{:02d}".format(epoch),".ckpt")
+    fpath = osp.join(save_dir, "model.pth.tar-" + "{:02d}".format(epoch)+".ckpt")
     torch.save(state, fpath)
     print(f'Checkpoint saved to "{fpath}"')
     if is_best:
@@ -43,6 +43,8 @@ def get_latest_ckpt(path, reverse=False, suffix='.ckpt'):
 
 def resume_from_checkpoint(ckpt_dir, model, optimizer=None):
     ckpt_file = get_latest_ckpt(ckpt_dir)
+    if ckpt_file is None :
+        return 0
     print(f'Loading checkpoint from "{ckpt_file}"')
     ckpt = torch.load(ckpt_file)
     model.load_state_dict(ckpt["state_dict"])
