@@ -5,3 +5,4 @@ src/datasets/__pycache__/
 src/losses/__pycache__/
 src/models/__pycache__/
 __pycache__/
+Logs/*/*.ckpt
