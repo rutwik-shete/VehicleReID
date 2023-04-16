@@ -1,0 +1,100 @@
+==========
+Args:Namespace(adam_beta1=0.9, adam_beta2=0.999, arch='swinTransformer', color_aug=False, color_jitter=False, eval_freq=5, evaluate=False, gamma=0.1, gpu_devices='0', height=224, label_smooth=False, lambda_htri=1, lambda_xent=1, load_weights='', lr=0.003, lr_scheduler='multi_step', margin=0.3, max_epoch=60, momentum=0.9, no_pretrained=True, num_instances=4, optim='amsgrad', print_freq=10, query_remove=True, random_erase=False, resume='/mnt/fast/nobackup/users/rs01960/AdvanceCV/VehicleReID/Logs/swinTransformer_60_amsgrad_0.003', rmsprop_alpha=0.99, root='/mnt/fast/nobackup/users/rs01960/AdvanceCV', save_dir='/mnt/fast/nobackup/users/rs01960/AdvanceCV/VehicleReID/Logs/swinTransformer_60_amsgrad_0.003', seed=1, sgd_dampening=0, sgd_nesterov=False, source_names=['veri'], split_id=0, start_epoch=0, start_eval=0, stepsize=[20, 40], target_names=['veri'], test_batch_size=100, test_size=800, train_batch_size=64, train_sampler='RandomSampler', use_avai_gpus=False, use_cpu=False, visualize_ranks=False, weight_decay=0.0005, width=224, workers=8)
+==========
+Value Of GPU :  True
+Currently using GPU 0
+Initializing image data manager
+=> Initializing TRAIN (source) datasets
+=> VeRi loaded
+Image Dataset statistics:
+  ----------------------------------------
+  subset   | # ids | # images | # cameras
+  ----------------------------------------
+  train    |   576 |    37778 |        20
+  query    |   200 |     1678 |        19
+  gallery  |   200 |    11579 |        19
+  ----------------------------------------
+=> Initializing TEST (target) datasets
+=> VeRi loaded
+Image Dataset statistics:
+  ----------------------------------------
+  subset   | # ids | # images | # cameras
+  ----------------------------------------
+  train    |   576 |    37778 |        20
+  query    |   200 |     1678 |        19
+  gallery  |   200 |    11579 |        19
+  ----------------------------------------
+
+
+  **************** Summary ****************
+  train names      : ['veri']
+  # train datasets : 1
+  # train ids      : 576
+  # train images   : 37778
+  # train cameras  : 20
+  test names       : ['veri']
+  *****************************************
+
+
+Initializing model: swinTransformer
+Model size: 27.962 M
+=> Start training
+Epoch: [1][10/590]	Time 0.358 (1.900)	Data 0.0001 (0.1401)	Xent 7.5749 (7.1645)	Htri 0.4566 (0.5527)	Acc 0.00 (0.16)	
+Epoch: [1][20/590]	Time 0.356 (1.130)	Data 0.0003 (0.0701)	Xent 7.0634 (7.2166)	Htri 0.1679 (0.4259)	Acc 0.00 (0.16)	
+Epoch: [1][30/590]	Time 0.348 (0.868)	Data 0.0002 (0.0468)	Xent 7.3291 (7.2235)	Htri 0.1232 (0.3743)	Acc 1.56 (0.21)	
+Epoch: [1][40/590]	Time 0.345 (0.737)	Data 0.0002 (0.0352)	Xent 7.0197 (7.1949)	Htri 0.1178 (0.3372)	Acc 0.00 (0.16)	
+Epoch: [1][50/590]	Time 0.342 (0.658)	Data 0.0002 (0.0282)	Xent 7.3658 (7.1104)	Htri 0.3172 (0.3626)	Acc 1.56 (0.28)	
+Epoch: [1][60/590]	Time 0.340 (0.605)	Data 0.0003 (0.0235)	Xent 6.7883 (7.0499)	Htri 0.1434 (0.3340)	Acc 0.00 (0.34)	
+Epoch: [1][70/590]	Time 0.340 (0.567)	Data 0.0002 (0.0202)	Xent 6.4274 (6.9911)	Htri 0.2541 (0.3108)	Acc 0.00 (0.31)	
+Epoch: [1][80/590]	Time 0.361 (0.541)	Data 0.0002 (0.0177)	Xent 6.4021 (6.9345)	Htri 0.2662 (0.2888)	Acc 0.00 (0.41)	
+Epoch: [1][90/590]	Time 0.357 (0.520)	Data 0.0003 (0.0158)	Xent 6.6083 (6.8917)	Htri 0.3456 (0.2780)	Acc 1.56 (0.38)	
+Epoch: [1][100/590]	Time 0.341 (0.503)	Data 0.0002 (0.0142)	Xent 6.3325 (6.8475)	Htri 0.3177 (0.2825)	Acc 0.00 (0.41)	
+Epoch: [1][110/590]	Time 0.342 (0.488)	Data 0.0002 (0.0129)	Xent 6.4541 (6.8116)	Htri 0.0990 (0.2716)	Acc 0.00 (0.40)	
+Epoch: [1][120/590]	Time 0.341 (0.476)	Data 0.0002 (0.0119)	Xent 6.3535 (6.7807)	Htri 0.3295 (0.2686)	Acc 1.56 (0.40)	
+Epoch: [1][130/590]	Time 0.342 (0.466)	Data 0.0002 (0.0110)	Xent 6.2601 (6.7481)	Htri 0.2769 (0.2717)	Acc 1.56 (0.41)	
+Epoch: [1][140/590]	Time 0.354 (0.457)	Data 0.0002 (0.0102)	Xent 6.4216 (6.7241)	Htri 0.3580 (0.2728)	Acc 0.00 (0.39)	
+Epoch: [1][150/590]	Time 0.347 (0.450)	Data 0.0003 (0.0096)	Xent 6.2860 (6.6998)	Htri 0.2826 (0.2750)	Acc 3.12 (0.39)	
+Epoch: [1][160/590]	Time 0.342 (0.444)	Data 0.0003 (0.0090)	Xent 6.3845 (6.6794)	Htri 0.2807 (0.2753)	Acc 0.00 (0.39)	
+Epoch: [1][170/590]	Time 0.354 (0.438)	Data 0.0001 (0.0085)	Xent 6.3973 (6.6678)	Htri 0.3541 (0.3092)	Acc 0.00 (0.39)	
+Epoch: [1][180/590]	Time 0.369 (0.434)	Data 0.0002 (0.0080)	Xent 6.2776 (6.6502)	Htri 0.3055 (0.3160)	Acc 3.12 (0.44)	
+Epoch: [1][190/590]	Time 0.365 (0.431)	Data 0.0002 (0.0076)	Xent 6.4051 (6.6345)	Htri 0.2953 (0.3246)	Acc 1.56 (0.48)	
+Epoch: [1][200/590]	Time 0.345 (0.427)	Data 0.0003 (0.0072)	Xent 6.3200 (6.6188)	Htri 0.3156 (0.3236)	Acc 0.00 (0.47)	
+Epoch: [1][210/590]	Time 0.343 (0.423)	Data 0.0002 (0.0069)	Xent 6.3674 (6.6052)	Htri 0.2688 (0.3221)	Acc 0.00 (0.47)	
+Epoch: [1][220/590]	Time 0.345 (0.420)	Data 0.0003 (0.0066)	Xent 6.2226 (6.5929)	Htri 0.7266 (0.3225)	Acc 1.56 (0.48)	
+Epoch: [1][230/590]	Time 0.344 (0.416)	Data 0.0003 (0.0063)	Xent 6.4108 (6.5829)	Htri 0.2716 (0.3281)	Acc 0.00 (0.46)	
+Epoch: [1][240/590]	Time 0.343 (0.413)	Data 0.0002 (0.0061)	Xent 6.1677 (6.5695)	Htri 0.2390 (0.3267)	Acc 1.56 (0.48)	
+Epoch: [1][250/590]	Time 0.341 (0.410)	Data 0.0002 (0.0058)	Xent 6.2897 (6.5585)	Htri 0.2711 (0.3300)	Acc 3.12 (0.49)	
+Epoch: [1][260/590]	Time 0.344 (0.408)	Data 0.0003 (0.0056)	Xent 6.3846 (6.5499)	Htri 0.1852 (0.3277)	Acc 1.56 (0.50)	
+Epoch: [1][270/590]	Time 0.373 (0.406)	Data 0.0002 (0.0054)	Xent 6.2214 (6.5465)	Htri 0.8634 (0.3476)	Acc 0.00 (0.50)	
+Epoch: [1][280/590]	Time 0.355 (0.404)	Data 0.0002 (0.0052)	Xent 6.4961 (6.5426)	Htri 1.6388 (0.3702)	Acc 0.00 (0.50)	
+Epoch: [1][290/590]	Time 0.365 (0.402)	Data 0.0002 (0.0051)	Xent 6.3986 (6.5364)	Htri 0.4623 (0.3805)	Acc 3.12 (0.50)	
+Epoch: [1][300/590]	Time 0.363 (0.401)	Data 0.0003 (0.0049)	Xent 6.3580 (6.5309)	Htri 0.6228 (0.3934)	Acc 0.00 (0.50)	
+Epoch: [1][310/590]	Time 0.348 (0.400)	Data 0.0002 (0.0048)	Xent 6.2738 (6.5233)	Htri 0.3798 (0.3941)	Acc 0.00 (0.49)	
+Epoch: [1][320/590]	Time 0.363 (0.399)	Data 0.0002 (0.0046)	Xent 6.3300 (6.5166)	Htri 0.5796 (0.3996)	Acc 3.12 (0.51)	
+Epoch: [1][330/590]	Time 0.361 (0.398)	Data 0.0004 (0.0045)	Xent 6.2241 (6.5086)	Htri 0.3509 (0.4036)	Acc 0.00 (0.50)	
+Epoch: [1][340/590]	Time 0.351 (0.396)	Data 0.0003 (0.0044)	Xent 6.3264 (6.5018)	Htri 0.3564 (0.4065)	Acc 3.12 (0.51)	
+Epoch: [1][350/590]	Time 0.345 (0.395)	Data 0.0004 (0.0043)	Xent 6.2644 (6.4954)	Htri 0.3523 (0.4051)	Acc 0.00 (0.50)	
+Epoch: [1][360/590]	Time 0.342 (0.393)	Data 0.0002 (0.0042)	Xent 6.3984 (6.4893)	Htri 0.3804 (0.4035)	Acc 0.00 (0.51)	
+Epoch: [1][370/590]	Time 0.343 (0.392)	Data 0.0003 (0.0040)	Xent 6.3057 (6.4830)	Htri 0.2979 (0.4012)	Acc 0.00 (0.52)	
+Epoch: [1][380/590]	Time 0.343 (0.391)	Data 0.0003 (0.0039)	Xent 6.2834 (6.4771)	Htri 0.2588 (0.3992)	Acc 0.00 (0.52)	
+Epoch: [1][390/590]	Time 0.367 (0.390)	Data 0.0037 (0.0039)	Xent 6.1069 (6.4718)	Htri 0.4174 (0.3980)	Acc 0.00 (0.51)	
+Epoch: [1][400/590]	Time 0.346 (0.389)	Data 0.0002 (0.0038)	Xent 6.2068 (6.4665)	Htri 0.2796 (0.3967)	Acc 1.56 (0.51)	
+Epoch: [1][410/590]	Time 0.345 (0.388)	Data 0.0002 (0.0037)	Xent 6.3231 (6.4616)	Htri 0.2859 (0.3964)	Acc 0.00 (0.51)	
+Epoch: [1][420/590]	Time 0.354 (0.387)	Data 0.0003 (0.0036)	Xent 6.1960 (6.4566)	Htri 0.2968 (0.3969)	Acc 0.00 (0.51)	
+Epoch: [1][430/590]	Time 0.354 (0.387)	Data 0.0003 (0.0035)	Xent 6.3921 (6.4517)	Htri 0.2676 (0.3959)	Acc 0.00 (0.53)	
+Epoch: [1][440/590]	Time 0.358 (0.386)	Data 0.0003 (0.0035)	Xent 6.2762 (6.4476)	Htri 0.2511 (0.3960)	Acc 1.56 (0.53)	
+Epoch: [1][450/590]	Time 0.354 (0.385)	Data 0.0002 (0.0034)	Xent 6.2775 (6.4433)	Htri 0.2874 (0.3945)	Acc 1.56 (0.53)	
+Epoch: [1][460/590]	Time 0.344 (0.385)	Data 0.0001 (0.0033)	Xent 6.1913 (6.4385)	Htri 0.3474 (0.3933)	Acc 0.00 (0.54)	
+Epoch: [1][470/590]	Time 0.369 (0.384)	Data 0.0002 (0.0032)	Xent 6.2708 (6.4347)	Htri 0.3464 (0.3919)	Acc 0.00 (0.53)	
+Epoch: [1][480/590]	Time 0.368 (0.384)	Data 0.0003 (0.0032)	Xent 6.3384 (6.4310)	Htri 0.3634 (0.3905)	Acc 3.12 (0.54)	
+Epoch: [1][490/590]	Time 0.351 (0.383)	Data 0.0003 (0.0031)	Xent 6.1895 (6.4275)	Htri 0.2640 (0.3890)	Acc 1.56 (0.55)	
+Epoch: [1][500/590]	Time 0.367 (0.383)	Data 0.0002 (0.0031)	Xent 6.3247 (6.4244)	Htri 0.2066 (0.3871)	Acc 0.00 (0.56)	
+Epoch: [1][510/590]	Time 0.369 (0.382)	Data 0.0002 (0.0030)	Xent 6.1605 (6.4206)	Htri 0.3113 (0.3860)	Acc 0.00 (0.57)	
+Epoch: [1][520/590]	Time 0.370 (0.382)	Data 0.0002 (0.0030)	Xent 6.3651 (6.4176)	Htri 0.2677 (0.3848)	Acc 0.00 (0.58)	
+Epoch: [1][530/590]	Time 0.342 (0.381)	Data 0.0003 (0.0029)	Xent 6.3487 (6.4145)	Htri 0.2886 (0.3839)	Acc 1.56 (0.58)	
+Epoch: [1][540/590]	Time 0.343 (0.381)	Data 0.0001 (0.0029)	Xent 6.3652 (6.4111)	Htri 0.2669 (0.3828)	Acc 0.00 (0.59)	
+Epoch: [1][550/590]	Time 0.344 (0.380)	Data 0.0003 (0.0028)	Xent 6.2674 (6.4087)	Htri 0.3195 (0.3814)	Acc 0.00 (0.59)	
+Epoch: [1][560/590]	Time 0.343 (0.379)	Data 0.0002 (0.0028)	Xent 6.3155 (6.4056)	Htri 0.3039 (0.3803)	Acc 0.00 (0.59)	
+Epoch: [1][570/590]	Time 0.341 (0.379)	Data 0.0002 (0.0027)	Xent 6.2870 (6.4025)	Htri 0.3347 (0.3800)	Acc 0.00 (0.59)	
+Epoch: [1][580/590]	Time 0.376 (0.378)	Data 0.0002 (0.0027)	Xent 6.1300 (6.3996)	Htri 0.3362 (0.3787)	Acc 1.56 (0.60)	
+Epoch: [1][590/590]	Time 0.364 (0.378)	Data 0.0003 (0.0026)	Xent 6.2030 (6.3971)	Htri 0.3262 (0.3771)	Acc 0.00 (0.60)	
