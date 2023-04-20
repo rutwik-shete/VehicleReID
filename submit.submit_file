@@ -1,0 +1,102 @@
+
+JobBatchName = "VERI Job"
+
+# Executable Python Path
+executable    = /user/HS402/rs01960/miniconda3/envs/pytorch/bin/python3
+
+# Whcih Image Info
+universe     = docker
+docker_image = nvidia/cuda:10.1-cudnn7-runtime-ubuntu16.04
+
+# Event, out and error logs
+log    = c$(cluster).p$(process).log
+output = c$(cluster).p$(process).out
+error  = c$(cluster).p$(process).error
+
+# File Transfer, Input, Output
+should_transfer_files = YES
+
+# Mount the project spaces containing the Anaconda environments and the code
+# Uncomment this environment line if you're not running on /mnt/fast
+# environment = "mount=$ENV(PWD)"
+
+# Requirements for the Job (see NvidiaDocker/Example09)
+requirements =  (CUDAGlobalMemoryMb > 4500) && \
+                (CUDAGlobalMemoryMb <  17000) && \
+#               (HasStornext) && \
+                (CUDACapability > 2.0)
+
+# Resources Needed
+request_GPUs   = 2
+
+# this needs to be specified for the AI@Surrey cluster if requesting a GPU
++GPUMem        = 10000
+request_CPUs   = 1
+request_memory = 10G
+
+#This job will complete in less than 1 hour
++JobRunTime = 3
+
+#This job can checkpoint
++CanCheckpoint = true
+
+# ------------------------------------
+# Request for guaranteed run time. 0 means job is happy to checkpoint and move at any time.
+# This lets Condor remove our job ASAP if a machine needs rebooting. Useful when we can checkpoint and restore
+# Measured in seconds, so it can be changed to match the time it takes for an epoch to run
+MaxJobRetirementTime = 0
+
+# -----------------------------------
+# Queue commands. We can use variables and flags to launch our command with multiple options (as you would from the command line)
+
+# run the code from the previous Directory
+arguments = $(main_file_path) \
+-a $(which_Model) \
+-s veri \
+-t veri \
+--root $(dataset_path) \
+--height 224 \
+--width 224 \
+--optim $(optimizer) \
+--lr $(learning_rate) \
+--max-epoch $(max_epochs) \
+--stepsize 20 40 \
+--train-batch-size 64 \
+--test-batch-size 100 \
+--save-dir $(ckpt_dir) \
+--no-pretrained \
+--workers 8 \
+--eval-freq 20 \
+--start-eval 0 \
+--resume $(ckpt_dir)
+
+main_file_path = /mnt/fast/nobackup/users/rs01960/AdvanceCV/VehicleReID/main.py
+ # swinTransformer,resnet,resnet50_fc512
+which_Model = swinTransformer
+dataset_path = /mnt/fast/nobackup/users/rs01960/AdvanceCV
+optimizer = adam
+learning_rate = 0.0003
+max_epochs = 60
+finalSaveLocation = $(which_Model)_$(max_epochs)_$(optimizer)_$(learning_rate)
+ckpt_dir = /mnt/fast/nobackup/users/rs01960/AdvanceCV/VehicleReID/Logs/$(finalSaveLocation)
+
+#script = $ENV(PWD)/main.py
+#batch_size = 20
+
+# Make the checkpoint location depend on the variables we use to run the model
+# ckpt_dir = $ENV(PWD)/lr_$(lr)/models_$(epochs)
+#lr = 0.1
+
+# Multiple submission using "queue n for var in val1, val2..."
+#queue 1 epochs in 5, 10, 20
+
+# Multiple submission by redeclaring variables.
+#lr = 0.01
+#queue 1 epochs in 5, 10, 20
+
+# Note that in both cases ckpt_dir and arguments are automatically modified
+
+# queue 1 which_Model in resnet50_fc512, resnet50
+# queue 1 augmentation in random-erase , color-jitter , color-aug
+
+# queue 1 which_Model in swinTransformer,resnet50_fc512,resnet18,resnet18_fc512,resnet34,resnet34_fc512,mobilenet_v3_small,vgg16
