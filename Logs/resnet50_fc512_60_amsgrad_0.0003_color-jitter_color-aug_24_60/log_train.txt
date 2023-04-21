@@ -1,0 +1,41 @@
+==========
+Args:Namespace(adam_beta1=0.9, adam_beta2=0.999, arch='resnet50_fc512', color_aug=True, color_jitter=True, eval_freq=20, evaluate=False, gamma=0.1, gpu_devices='0', height=224, label_smooth=False, lambda_htri=1, lambda_xent=1, load_weights='', lr=0.0003, lr_scheduler='multi_step', margin=0.3, max_epoch=60, momentum=0.9, no_pretrained=True, num_instances=4, optim='amsgrad', print_freq=10, query_remove=True, random_erase=False, resume='/mnt/fast/nobackup/users/rs01960/AdvanceCV/VehicleReID/Logs/resnet50_fc512_60_amsgrad_0.0003_color-jitter_color-aug_24_60', rmsprop_alpha=0.99, root='/mnt/fast/nobackup/users/rs01960/AdvanceCV', save_dir='/mnt/fast/nobackup/users/rs01960/AdvanceCV/VehicleReID/Logs/resnet50_fc512_60_amsgrad_0.0003_color-jitter_color-aug_24_60', seed=1, sgd_dampening=0, sgd_nesterov=False, source_names=['veri'], split_id=0, start_epoch=0, start_eval=0, stepsize=[20, 40], target_names=['veri'], test_batch_size=60, test_size=800, train_batch_size=24, train_sampler='RandomSampler', use_avai_gpus=False, use_cpu=False, visualize_ranks=False, weight_decay=0.0005, width=224, workers=8)
+==========
+Value Of GPU :  True
+Currently using GPU 0
+Initializing image data manager
+=> Initializing TRAIN (source) datasets
+=> VeRi loaded
+Image Dataset statistics:
+  ----------------------------------------
+  subset   | # ids | # images | # cameras
+  ----------------------------------------
+  train    |   576 |    37778 |        20
+  query    |   200 |     1678 |        19
+  gallery  |   200 |    11579 |        19
+  ----------------------------------------
+=> Initializing TEST (target) datasets
+=> VeRi loaded
+Image Dataset statistics:
+  ----------------------------------------
+  subset   | # ids | # images | # cameras
+  ----------------------------------------
+  train    |   576 |    37778 |        20
+  query    |   200 |     1678 |        19
+  gallery  |   200 |    11579 |        19
+  ----------------------------------------
+
+
+  **************** Summary ****************
+  train names      : ['veri']
+  # train datasets : 1
+  # train ids      : 576
+  # train images   : 37778
+  # train cameras  : 20
+  test names       : ['veri']
+  *****************************************
+
+
+Initializing model: resnet50_fc512
+Model size: 24.558 M
+=> Start training
