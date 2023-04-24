@@ -1,0 +1,63 @@
+==========
+Args:Namespace(adam_beta1=0.9, adam_beta2=0.999, arch='resnet18', color_aug=False, color_jitter=False, eval_freq=5, evaluate=True, gamma=0.1, gpu_devices='0', height=224, label_smooth=False, lambda_htri=1, lambda_xent=1, load_weights='', lr=0.0003, lr_scheduler='multi_step', margin=0.3, max_epoch=60, momentum=0.9, no_pretrained=True, num_instances=4, optim='amsgrad', print_freq=10, query_remove=True, random_erase=False, resume='/mnt/fast/nobackup/users/rs01960/AdvanceCV/VehicleReID/Logs/resnet18_60_amsgrad_0.0003', rmsprop_alpha=0.99, root='/mnt/fast/nobackup/users/rs01960/AdvanceCV', save_dir='/mnt/fast/nobackup/users/rs01960/AdvanceCV/VehicleReID/Logs/resnet18_60_amsgrad_0.0003', seed=1, sgd_dampening=0, sgd_nesterov=False, source_names=['veri'], split_id=0, start_epoch=0, start_eval=0, stepsize=[20, 40], target_names=['veri'], test_batch_size=100, test_size=800, train_batch_size=64, train_sampler='RandomSampler', use_avai_gpus=False, use_cpu=False, visualize_ranks=True, weight_decay=0.0005, width=224, workers=8)
+==========
+Value Of GPU :  True
+Currently using GPU 0
+Initializing image data manager
+=> Initializing TRAIN (source) datasets
+=> VeRi loaded
+Image Dataset statistics:
+  ----------------------------------------
+  subset   | # ids | # images | # cameras
+  ----------------------------------------
+  train    |   576 |    37778 |        20
+  query    |   200 |     1678 |        19
+  gallery  |   200 |    11579 |        19
+  ----------------------------------------
+=> Initializing TEST (target) datasets
+=> VeRi loaded
+Image Dataset statistics:
+  ----------------------------------------
+  subset   | # ids | # images | # cameras
+  ----------------------------------------
+  train    |   576 |    37778 |        20
+  query    |   200 |     1678 |        19
+  gallery  |   200 |    11579 |        19
+  ----------------------------------------
+
+
+  **************** Summary ****************
+  train names      : ['veri']
+  # train datasets : 1
+  # train ids      : 576
+  # train images   : 37778
+  # train cameras  : 20
+  test names       : ['veri']
+  *****************************************
+
+
+Initializing model: resnet18
+Model size: 11.177 M
+Loading checkpoint from "/mnt/fast/nobackup/users/rs01960/AdvanceCV/VehicleReID/Logs/resnet18_60_amsgrad_0.0003/model.pth.tar-60.ckpt"
+Loaded model weights
+Loaded optimizer
+** previous epoch = 60	 previous rank1 = 79.8%
+Evaluate only
+Evaluating veri ...
+Extracted features for query set, obtained 1678-by-512 matrix
+Extracted features for gallery set, obtained 11579-by-512 matrix
+=> BatchTime(s)/BatchSize(img): 0.133/100
+Computing CMC and mAP
+Results ----------
+mAP: 45.7%
+CMC curve
+Rank-1  : 79.8%
+Rank-5  : 91.0%
+Rank-10 : 94.4%
+Rank-20 : 96.3%
+------------------
+Visualizing top-20 ranks
+# query: 1678
+# gallery 11579
+Saving images to "/mnt/fast/nobackup/users/rs01960/AdvanceCV/VehicleReID/Logs/resnet18_60_amsgrad_0.0003/ranked_results/veri"
+Done
